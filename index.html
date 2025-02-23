@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Compilador</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Proyecto Compilador</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#" onclick="cargarModulo('lexico')">Análisis Léxico</a></li>
+            <li><a href="#" onclick="cargarModulo('sintactico')">Análisis Sintáctico</a></li>
+            <li><a href="#" onclick="cargarModulo('semantico')">Análisis Semántico</a></li>
+            <li><a href="#" onclick="cargarModulo('intermedio')">Generación de Código Intermedio</a></li>
+            <li><a href="#" onclick="cargarModulo('optimizacion')">Optimización</a></li>
+            <li><a href="#" onclick="cargarModulo('automatas')">Autómatas (Demostración)</a></li>
+        </ul>
+    </nav>
+    <div id="contenido">
+        <!-- Aquí se cargarán los contenidos de cada módulo -->
+    </div>
+    <script src="modules/lexico.js"></script>
+    <script src="modules/sintactico.js"></script>
+    <script src="modules/intermedio.js"></script>
+    <script src="modules/optimizacion.js"></script>
+    <script src="modules/semantico.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Cargar el módulo léxico por defecto al iniciar
+        window.onload = function() {
+            cargarModulo('lexico');
+        };
+    </script>
+</body>
+</html>

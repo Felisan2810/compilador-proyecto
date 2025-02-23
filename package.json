@@ -1,0 +1,12 @@
+{
+  "name": "compilador-proyecto",
+  "version": "1.0.0",
+  "description": "Este proyecto es un compilador simple que incluye análisis léxico, sintáctico y semántico, así como generación de código intermedio y optimización. A continuación se detallan los componentes principales del proyecto.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

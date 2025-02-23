@@ -1,0 +1,118 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #1c1c1c; /* Color de fondo oscuro */
+    color: #e0e0e0; /* Color de texto claro */
+}
+
+header {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    background-color: #242424; /* Color de header oscuro */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #88c0d0; /* Color de título */
+}
+
+nav {
+    width: 100%;
+    background-color: #333; /* Color de navegación oscuro */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav li a {
+    display: block;
+    color: #e0e0e0; /* Color de enlace */
+    text-decoration: none;
+    padding: 1em;
+}
+
+nav li a:hover {
+    background-color: #444; /* Color de enlace al pasar el mouse */
+}
+
+#contenido {
+    width: 80%;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #2e2e2e; /* Color de contenido oscuro */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilos para los módulos (puedes personalizarlos más) */
+#contenido h2 {
+    color: #88c0d0; /* Color de título de módulo */
+}
+
+textarea {
+    width: 100%;
+    height: 200px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #2b2b2b; /* Color de textarea oscuro */
+    color: #d8dee9; /* Color de texto en textarea */
+    border: 1px solid #444;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 14px;
+    resize: vertical; /* Permite ajustar la altura */
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #4c566a; /* Color de botón oscuro */
+    color: #e0e0e0; /* Color de texto en botón */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #616e88; /* Color de botón al pasar el mouse */
+}
+
+#resultadoLexico, #resultadoSintaxis, #resultadoSemantico, #resultadoAutomatas{
+    padding: 10px;
+    background-color: #3b3b3b; /* Color de resultado oscuro */
+    color: #d8dee9; /* Color de texto en resultado */
+    border: 1px solid #444;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 14px;
+    white-space: pre-wrap; /* Respeta los saltos de línea y espacios */
+    word-wrap: break-word; /* Rompe palabras largas para evitar desbordamiento */
+}
+
+/* Resaltado de sintaxis básico (puedes usar una librería más avanzada) */
+.keyword {
+    color: #81a1c1; /* Azul */
+}
+
+.comment {
+    color: #616e88; /* Gris */
+}
+
+.string {
+    color: #a3be8c; /* Verde */
+}
+
+.number {
+    color: #d08770; /* Naranja */
+}
