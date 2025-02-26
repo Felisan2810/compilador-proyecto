@@ -5,6 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyecto Compilador</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+    table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+    
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+    
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -14,9 +31,7 @@
         <ul>
             <li><a href="#" onclick="toggleInterpreteOptions()">Intérprete</a></li>
             <li><a href="#" onclick="toggleParserOptions()">Parser</a></li>
-            <li><a href="#" onclick="cargarModulo('semantico')">Análisis Semántico</a></li>
-            <li><a href="#" onclick="cargarModulo('intermedio')">Generación de Código Intermedio</a></li>
-            <li><a href="#" onclick="cargarModulo('optimizacion')">Optimización</a></li>
+            <li><a href="#" onclick="toggleTablaSimbolosOptions()">Tabla de Simbolos</a></li>
             <li><a href="#" onclick="cargarModulo('automatas')">Autómatas (Demostración)</a></li>
         </ul>
     </nav>
@@ -27,19 +42,27 @@
         <button onclick="cargarModulo('interprete', 4)">Variables Dependientes</button>
         <button onclick="cargarModulo('interprete', 5)">Manejo de Errores</button>
     </div>
-        <div id="parserOptions" style="display: none;">
+    <div id="parserOptions" style="display: none;">
         <button onclick="cargarModulo('parser', 1)">Asignación de Variables</button>
         <button onclick="cargarModulo('parser', 2)">Uso de bucle si-sino-finsi</button>
         <button onclick="cargarModulo('parser', 3)">Uso de bucle mientras-finmientras</button>
         <button onclick="cargarModulo('parser', 4)">Error de asignación</button>
         <button onclick="cargarModulo('parser', 5)">Error de bucle</button>
     </div>
+    <div id="tablaSimbolosOptions" style="display: none;">
+        <button onclick="cargarModulo('tablasimbolos', 1)">Ejemplo 1</button>
+        <button onclick="cargarModulo('tablasimbolos', 2)">Ejemplo 2</button>
+        <button onclick="cargarModulo('tablasimbolos', 3)">Ejemplo 3</button>
+        <button onclick="cargarModulo('tablasimbolos', 4)">Ejemplo 4</button>
+        <button onclick="cargarModulo('tablasimbolos', 5)">Ejemplo 5</button>
+    </div>
     <div id="contenido">
         <!-- Aquí se cargarán los contenidos de cada módulo -->
     </div>
     <script src="modules/interprete.js"></script>
-    <script src="modules/Sintactico/parser.js"></script>
     <script src="modules/Sintactico/tokenizer.js"></script>
+    <script src="modules/Sintactico/parser.js"></script>
+    <script src="modules/intermedio.js"></script>
     <script src="script.js"></script>
     <script>
         // Cargar el módulo léxico por defecto al iniciar

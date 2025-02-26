@@ -58,7 +58,7 @@ function parse(tokens) {
             throw new Error(`Token inesperado ${tokens[posicion].valor}`);
         }
     }
-
+        
     function parseDeclaracionVariable() {
         const tipo = esperar("PALABRA RESERVADA").valor;
         const declaraciones = [];
@@ -66,12 +66,24 @@ function parse(tokens) {
             const id = esperar("IDENTIFICADOR").valor;
             let inicial = null;
             declararVariable(id);
+
+            //Verificar si es un arreglo
+            let dimensiones = [];
+            if (tokens[posicion] && tokens[posicion].tipo === "OPERADOR" && tokens[posicion].valor === "[") {
+                while (tokens[posicion] && tokens[posicion].tipo === "OPERADOR" && tokens[posicion].valor === "[") {
+                    esperar("OPERADOR");  //Esperar el corchete de apertura
+                    const dimension = esperar("NUMERO").valor;
+                    dimensiones.push(dimension);
+                    esperar("OPERADOR");  //Esperar el corchete de cierre
+                }
+            }
+
             if (tokens[posicion] && tokens[posicion].tipo === "OPERADOR" && tokens[posicion].valor === "=") {
                 esperar("OPERADOR");
                 inicial = parseExpresion();
-                inicializarVariable(id); // Ahora está inicializada
+                inicializarVariable(id);  // Ahora está inicializada
             }
-            declaraciones.push({ id, inicial });
+            declaraciones.push({ id, inicial, dimensiones });
             if (tokens[posicion] && tokens[posicion].tipo === "COMA") {
                 esperar("COMA");
             } else {

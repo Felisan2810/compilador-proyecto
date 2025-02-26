@@ -8,6 +8,11 @@ function toggleParserOptions() {
     opciones.style.display = opciones.style.display === 'none' ? 'block' : 'none';
 }
 
+function toggleTablaSimbolosOptions() {
+    const opciones = document.getElementById('tablaSimbolosOptions');
+    opciones.style.display = opciones.style.display === 'none' ? 'block' : 'none';
+}
+
 function cargarModulo(modulo, ejemplo = null) {
     let contenidoDiv = document.getElementById('contenido');
 
@@ -92,9 +97,10 @@ function cargarModulo(modulo, ejemplo = null) {
             try {
                 // Llama a la función analizarCodigo del módulo parser.js
                 const resultado = analizarCodigo(entradaCodigo);
-                elementoSalida.textContent = `Resultado: ${resultado}`;
+                elementoSalida.innerHTML = `<pre>Resultado: ${resultado}</pre>`;
             } catch (error) {
-                elementoSalida.textContent = `Error: ${error.message}`;
+                elementoSalida.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+                console.error('Error al analizar código:', error);
             }
         }
 
@@ -115,12 +121,49 @@ function cargarModulo(modulo, ejemplo = null) {
             ];
             document.getElementById('codeInput').value = ejemplos[numeroEjemplo - 1];
         }
-    } else {
-        // Lógica para otros módulos (sintactico, semantico, etc.)
-        // ... (tu código existente para cargar otros módulos) ...
+    } else if (modulo === 'tablasimbolos') {
+        contenidoDiv.innerHTML = `
+            <h2>Tabla de Símbolos</h2>
+            <textarea id="codeInput" placeholder="Escribe tu código aquí..."></textarea>
+            <div class="buttons">
+                <button id="runButton">Generar Tabla de Símbolos</button>
+            </div>
+            <div class="output-section">
+                <div id="output">Tabla de símbolos aparecerá aquí...</div>
+            </div>
+        `;
+
+        // Añadir event listeners a los botones
+        document.getElementById('runButton').addEventListener('click', generarTabla);
+
+        if (ejemplo) {
+            loadEjemplo(ejemplo);
+        }
+        function generarTabla() {
+            const entradaCodigo = document.getElementById('codeInput').value;
+            const elementoSalida = document.getElementById('output');
+
+            try {
+                // Llama a la función generarTablaSimbolos del módulo intermedio.js
+                const tablaSimbolos = generarTablaSimbolos(entradaCodigo);
+                const tablaHTML = displayTablaSimbolos(tablaSimbolos);
+                elementoSalida.innerHTML = tablaHTML;
+            } catch (error) {
+                elementoSalida.textContent = `Error: ${error.message}`;
+            }
+        }
+        function loadEjemplo(numeroEjemplo) {
+            const ejemplos = [
+                `entero a = 5\nentero b = 3\nentero c = 2 + a * b\n`,
+                `real x = 4.5\nreal y = x + 3.2\nsi (y < 10)\n    y = y * 2\nsino\n    y = y - 1\nfinsi\n`,
+                `entero i = 0\nmientras (i < 5)\n    i = i + 1\nfinmientras\n`,
+                `real r\nreal s = r * 3.0\nentero t = (r + s) / 2\n`,
+                `entero j = 7\nreal k = 2.5\nsi (j > )\n    k = k + 3.5\nsino\n    k = k - 1.5\nfinsi\n`
+            ];
+            document.getElementById('codeInput').value = ejemplos[numeroEjemplo - 1];
+        }
     }
 }
-
 function analizarCodigo(codigo) {
     const tokens = tokenizer(codigo);
     const ast = parse(tokens);
