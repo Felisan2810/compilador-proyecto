@@ -12,27 +12,39 @@
     </header>
     <nav>
         <ul>
-            <li><a href="#" onclick="cargarModulo('lexico')">Análisis Léxico</a></li>
-            <li><a href="#" onclick="cargarModulo('sintactico')">Análisis Sintáctico</a></li>
+            <li><a href="#" onclick="toggleInterpreteOptions()">Intérprete</a></li>
+            <li><a href="#" onclick="toggleParserOptions()">Parser</a></li>
             <li><a href="#" onclick="cargarModulo('semantico')">Análisis Semántico</a></li>
             <li><a href="#" onclick="cargarModulo('intermedio')">Generación de Código Intermedio</a></li>
             <li><a href="#" onclick="cargarModulo('optimizacion')">Optimización</a></li>
             <li><a href="#" onclick="cargarModulo('automatas')">Autómatas (Demostración)</a></li>
         </ul>
     </nav>
+    <div id="interpreteOptions" style="display: none;">
+        <button onclick="cargarModulo('interprete', 1)">Operaciones Básicas</button>
+        <button onclick="cargarModulo('interprete', 2)">Operaciones con Paréntesis</button>
+        <button onclick="cargarModulo('interprete', 3)">Asignación y Suma</button>
+        <button onclick="cargarModulo('interprete', 4)">Variables Dependientes</button>
+        <button onclick="cargarModulo('interprete', 5)">Manejo de Errores</button>
+    </div>
+        <div id="parserOptions" style="display: none;">
+        <button onclick="cargarModulo('parser', 1)">Asignación de Variables</button>
+        <button onclick="cargarModulo('parser', 2)">Uso de bucle si-sino-finsi</button>
+        <button onclick="cargarModulo('parser', 3)">Uso de bucle mientras-finmientras</button>
+        <button onclick="cargarModulo('parser', 4)">Error de asignación</button>
+        <button onclick="cargarModulo('parser', 5)">Error de bucle</button>
+    </div>
     <div id="contenido">
         <!-- Aquí se cargarán los contenidos de cada módulo -->
     </div>
-    <script src="modules/lexico.js"></script>
-    <script src="modules/sintactico.js"></script>
-    <script src="modules/intermedio.js"></script>
-    <script src="modules/optimizacion.js"></script>
-    <script src="modules/semantico.js"></script>
+    <script src="modules/interprete.js"></script>
+    <script src="modules/Sintactico/parser.js"></script>
+    <script src="modules/Sintactico/tokenizer.js"></script>
     <script src="script.js"></script>
     <script>
         // Cargar el módulo léxico por defecto al iniciar
         window.onload = function() {
-            cargarModulo('lexico');
+            //cargarModulo('lexico'); // Ya no cargamos el lexico por defecto
         };
     </script>
 </body>
