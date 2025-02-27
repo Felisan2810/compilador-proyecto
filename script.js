@@ -123,43 +123,44 @@ function cargarModulo(modulo, ejemplo = null) {
         }
     } else if (modulo === 'tablasimbolos') {
         contenidoDiv.innerHTML = `
-            <h2>Tabla de Símbolos</h2>
+            <h2>Tabla de Símbolos </h2>
             <textarea id="codeInput" placeholder="Escribe tu código aquí..."></textarea>
             <div class="buttons">
-                <button id="runButton">Generar Tabla de Símbolos</button>
+                <button id="runButton">Generar Tabla de Símbolos </button>
             </div>
             <div class="output-section">
-                <div id="output">Tabla de símbolos aparecerá aquí...</div>
+                <div id="output">Resultado aparecerá aquí...</div>
             </div>
         `;
 
         // Añadir event listeners a los botones
-        document.getElementById('runButton').addEventListener('click', generarTabla);
+        document.getElementById('runButton').addEventListener('click', generarTablaYTercetos);
 
         if (ejemplo) {
             loadEjemplo(ejemplo);
         }
-        function generarTabla() {
+
+        function generarTablaYTercetos() {
             const entradaCodigo = document.getElementById('codeInput').value;
             const elementoSalida = document.getElementById('output');
 
             try {
                 // Llama a la función generarTablaSimbolos del módulo intermedio.js
-                const tablaSimbolos = generarTablaSimbolos(entradaCodigo);
-                const tablaHTML = displayTablaSimbolos(tablaSimbolos);
-                elementoSalida.innerHTML = tablaHTML;
+                const { tablaSimbolos, tercetos } = generarTablaSimbolosYTercetos(entradaCodigo);
+                let tablaHTML = displayTablaSimbolos(tablaSimbolos); //Se visualiza la tabla de simbolos.
+                let tercetosHTML = displayTercetos(tercetos); //Se visualiza los tercetos
+                elementoSalida.innerHTML = tablaHTML + "</br>" + tercetosHTML;
             } catch (error) {
                 elementoSalida.textContent = `Error: ${error.message}`;
             }
         }
+
         function loadEjemplo(numeroEjemplo) {
             const ejemplos = [
-                `entero a = 5\nentero b = 3\nentero c = 2 + a * b\n`,
-                `real x = 4.5\nreal y = x + 3.2\nsi (y < 10)\n    y = y * 2\nsino\n    y = y - 1\nfinsi\n`,
-                `entero i = 0\nmientras (i < 5)\n    i = i + 1\nfinmientras\n`,
-                `real r\nreal s = r * 3.0\nentero t = (r + s) / 2\n`,
-                `entero j = 7\nreal k = 2.5\nsi (j > )\n    k = k + 3.5\nsino\n    k = k - 1.5\nfinsi\n`
-            ];
+                `entero a[3][2], b[4], c[5][3]`,
+                 `entero a , b[4]\nreal x, y[3][4]\nentero c[5][2]`,
+                 `entero a[3][2], b[4], c[5][3]`
+    ];
             document.getElementById('codeInput').value = ejemplos[numeroEjemplo - 1];
         }
     }
